@@ -44,4 +44,7 @@ public class Attack : MonoBehaviour
     [SerializeField]
     public Target target = Target.Single;
 
+    [SerializeField]
+    public Style style = Style.Phyiscal;
+
 }

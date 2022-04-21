@@ -49,3 +49,4 @@ MonoBehaviour:
   attackCost: 5
   type: 2
   target: 0
+  style: 1
