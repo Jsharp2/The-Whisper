@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6216083327844756622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6216083327844756621}
+  m_Layer: 0
+  m_Name: External Runswick
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6216083327844756621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6216083327844756622}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.2014152, y: -4.09682, z: -0.48986343}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8270964459008349212}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2077587658747648510
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6216083327844756621}
+    m_Modifications:
+    - target: {fileID: 790591627004874310, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: sceneToLoad
+      value: Runswick
+      objectReference: {fileID: 0}
+    - target: {fileID: 790591627004874310, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: spawnPointName
+      value: SP_Enter_Runswick_E
+      objectReference: {fileID: 0}
+    - target: {fileID: 891696607541055990, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 891696607541055990, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1221823284520798889, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_Name
+      value: To_Runswick_West
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237952998052524189, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607436904048672835, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_Name
+      value: SP_Runswick_To_World_East
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960112520010013889, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_Name
+      value: Internal Runswick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121564022823345490, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121564022823345490, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3005498582795938833, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3455062739330823289, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_Name
+      value: SP_Runswick_To_World_West
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144948718481899119, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775803391739580509, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410515363602931871, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: sceneToLoad
+      value: Runswick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410515363602931871, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: spawnPointName
+      value: SP_Enter_Runswick_W
+      objectReference: {fileID: 0}
+    - target: {fileID: 7616710022707734593, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7986561820238082120, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304886243588232947, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_Name
+      value: To_Runswick_East
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+--- !u!4 &8270964459008349212 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+  m_PrefabInstance: {fileID: 2077587658747648510}
+  m_PrefabAsset: {fileID: 0}
