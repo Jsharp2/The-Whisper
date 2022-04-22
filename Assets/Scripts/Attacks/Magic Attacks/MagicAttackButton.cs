@@ -20,6 +20,24 @@ public class MagicAttackButton : MonoBehaviour
 
     public void ToggleSelector()
     {
+        if(magicAttackToPerform.target == Attack.Target.Multiple)
+        {
+            foreach(GameObject enemy in GameObject.Find("BattleManager").GetComponent<BattleManager>().Enemies)
+            {
+                enemy.transform.Find("EnemyHealthBar").gameObject.SetActive(true);
+                enemy.transform.Find("Background").gameObject.SetActive(true);
+                float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(magicAttackToPerform.type, enemy.GetComponent<Enemy>().type);
+                if (elemintalModifier == 1.5)
+                {
+                    enemy.transform.Find("Good").gameObject.SetActive(true);
+                }
+                else if (elemintalModifier == (2f / 3))
+                {
+                    enemy.transform.Find("Not").gameObject.SetActive(true);
+                }
+            }
+        }
+
         if (showSelector)
         {
             transform.parent.transform.parent.transform.parent.gameObject.transform.Find("Spell Desciption Panel").gameObject.SetActive(true);
@@ -30,6 +48,13 @@ public class MagicAttackButton : MonoBehaviour
         else
         {
             transform.parent.transform.parent.transform.parent.gameObject.transform.Find("Spell Desciption Panel").gameObject.SetActive(false);
+            foreach(GameObject enemy in GameObject.Find("BattleManager").GetComponent<BattleManager>().Enemies)
+            {
+                enemy.transform.Find("EnemyHealthBar").gameObject.SetActive(false);
+                enemy.transform.Find("Background").gameObject.SetActive(false);
+                enemy.transform.Find("Good").gameObject.SetActive(false);
+                enemy.transform.Find("Not").gameObject.SetActive(false);
+            }
         }
         showSelector = !showSelector;
     }

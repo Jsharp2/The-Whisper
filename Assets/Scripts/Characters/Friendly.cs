@@ -38,6 +38,8 @@ public class Friendly : Character
 
     public bool isBlock = false;
 
+    public Attack.Target Position;
+
     public TurnState currentState;
     // Start is called before the first frame update
     new public void Start()
@@ -191,24 +193,31 @@ public class Friendly : Character
 
         actionStarted = true;
         //Locates the enemy they are attacking
-        Vector3 enemyPosition = new Vector3(EnemytoAttack.transform.position.x - 2f, EnemytoAttack.transform.position.y, EnemytoAttack.transform.position.z);
-
-        //Moves towards the enemy
-        while (MoveTowardTarget(enemyPosition))
+        if(Position == Attack.Target.Single)
         {
-            yield return null;
+            Vector3 enemyPosition = new Vector3(EnemytoAttack.transform.position.x - 2f, EnemytoAttack.transform.position.y, EnemytoAttack.transform.position.z);
+            //Moves towards the enemy
+            while (MoveTowardTarget(enemyPosition))
+            {
+                yield return null;
+            }
+
+            //Waits half a second, then attacks
+            yield return new WaitForSeconds(.5f);
+
+            doDamage();
+
+            //Moves back to position
+            while (MoveTowardTarget(startPosition))
+            {
+                yield return null;
+            }
+        }
+        else
+        {
+            doDamage();
         }
         
-        //Waits half a second, then attacks
-        yield return new WaitForSeconds(.5f);
-
-        doDamage();
-
-        //Moves back to position
-        while (MoveTowardTarget(startPosition))
-        {
-            yield return null;
-        }
 
         //Removes them from the list to attack
         battleManager.PerformList.RemoveAt(0);
@@ -256,18 +265,85 @@ public class Friendly : Character
         //This is a very inefficient system to handle the type chart I have for the game. Hopefully I'll find a better way between iterations.
         
         Attack attack = battleManager.PerformList[0].choosenAttack;
-        Type heroType = EnemytoAttack.GetComponent<Enemy>().type;
 
-        float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
-
-        //Calculates the damage an enemy will take. If ti would be less than 1, makes sure they take at least 1 damage
-        int calc_damage = (int)((this.currAttack + attack.attackDamage - EnemytoAttack.GetComponent<Enemy>().defense) * Random.Range(.8f,1.2f) * elemintalModifier);
-        if (calc_damage < 1)
+        if (attack.style == Attack.Style.Phyiscal)
         {
-            calc_damage = 1;
+            if (attack.target == Attack.Target.Multiple)
+            {
+                foreach (GameObject enemy in battleManager.Enemies)
+                {
+                    Type enemyType = enemy.GetComponent<Enemy>().type;
+                    float blockModifier = 0;
+                    if (enemy.GetComponent<Enemy>().isBlock)
+                    {
+                        blockModifier = .5f;
+                    }
+
+                    float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, enemyType);
+
+                    int calcDamage = (int)((this.currAttack + attack.attackDamage - enemy.GetComponent<Enemy>().defense) * Random.Range(.8f, 1.2f) * (1 - blockModifier) * elemintalModifier); ;
+
+                    if (calcDamage < 1)
+                    {
+                        calcDamage = 1;
+                    }
+                    enemy.GetComponent<Friendly>().TakeDamage(calcDamage);
+                }
+            }
+            else
+            {
+                Type heroType = EnemytoAttack.GetComponent<Enemy>().type;
+                float blockModifier = 0;
+                if (EnemytoAttack.GetComponent<Enemy>().isBlock)
+                {
+                    blockModifier = .5f;
+                }
+
+                float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
+
+                int calcDamage = (int)((this.currAttack + attack.attackDamage - EnemytoAttack.GetComponent<Enemy>().defense) * Random.Range(.8f, 1.2f) * (1 - blockModifier) * elemintalModifier);
+
+                if (calcDamage < 1)
+                {
+                    calcDamage = 1;
+                }
+                EnemytoAttack.GetComponent<Enemy>().TakeDamage(calcDamage);
+            }
         }
 
-        //Enemy takes given damage
-        EnemytoAttack.GetComponent<Enemy>().TakeDamage(calc_damage);
+        else
+        {
+            if (attack.target == Attack.Target.Multiple)
+            {
+                foreach (GameObject enemy in battleManager.Enemies)
+                {
+                    Type heroType = enemy.GetComponent<Enemy>().type;
+
+                    float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
+
+                    int calcDamage = (int)((this.currMagic + attack.attackDamage - enemy.GetComponent<Enemy>().currMagic) * Random.Range(.8f, 1.2f) * elemintalModifier);
+
+                    if (calcDamage < 1)
+                    {
+                        calcDamage = 1;
+                    }
+                    enemy.GetComponent<Enemy>().TakeDamage(calcDamage);
+                }
+            }
+            else
+            {
+                Type heroType = EnemytoAttack.GetComponent<Enemy>().type;
+
+                float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
+
+                int calcDamage = (int)((this.currAttack + attack.attackDamage - EnemytoAttack.GetComponent<Enemy>().defense) * Random.Range(.8f, 1.2f) * elemintalModifier);
+
+                if (calcDamage < 1)
+                {
+                    calcDamage = 1;
+                }
+                EnemytoAttack.GetComponent<Enemy>().TakeDamage(calcDamage);
+            }
+        }
     }
 }

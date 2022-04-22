@@ -446,8 +446,19 @@ public class BattleManager : MonoBehaviour
 
         playerChoice.choosenAttack = choosenMagic;
         attackType = playerChoice.choosenAttack.type;
-        magicPanel.SetActive(false);
-        enemySelectPanel.SetActive(true);
+        HerosToManage[0].GetComponent<Friendly>().Position = choosenMagic.target;
+
+        if (choosenMagic.target == global::Attack.Target.Multiple)
+        {
+            HerosToManage[0].GetComponent<Friendly>().currMP -= playerChoice.choosenAttack.attackCost;
+            HerosToManage[0].GetComponent<Friendly>().mpDisplay.text = "MP: " + HerosToManage[0].GetComponent<Friendly>().currMP.ToString() + "/" + HerosToManage[0].GetComponent<Friendly>().maxMP.ToString();
+            heroInput = HEROGUI.DONE;
+        }
+        else
+        {
+            magicPanel.SetActive(false);
+            enemySelectPanel.SetActive(true);
+        }
     }
     
     //Player declares a magic attack. Brings up the correct menus
