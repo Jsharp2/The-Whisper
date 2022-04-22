@@ -185,32 +185,90 @@ public class Enemy : Character
     {
         return target != (transform.position = Vector3.MoveTowards(transform.position, target, animspeed * Time.deltaTime));
     }
-    
+
     //How enemies handle how much damage they do
     void DoDamage()
     {
-        //Handles if the target is currently blocking
-        float blockModifier = 0;
-        if (Hero.GetComponent<Friendly>().isBlock)
-        {
-            blockModifier = .5f;
-        }
-
-        //Same really bad way to do weakness and strengths the player has
         Attack attack = battleManager.PerformList[0].choosenAttack;
-        Type heroType = Hero.GetComponent<Friendly>().type;
-
-        float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
-
-        //Calculates damage that the player will take. Factors in modifiers after a number is calculated
-        int calcDamage = (int)((this.currAttack + attack.attackDamage - Hero.GetComponent<Friendly>().defense) * Random.Range(.8f, 1.2f) * (1- blockModifier) * elemintalModifier);
-
-        //Always ensures at least 1 damage is taken
-        if(calcDamage < 1)
+        if (attack.style == Attack.Style.Phyiscal)
         {
-            calcDamage = 1;
+            if (attack.target == Attack.Target.Multiple)
+            {
+                foreach (GameObject ally in battleManager.Heros)
+                {
+                    Type heroType = ally.GetComponent<Friendly>().type;
+                    float blockModifier = 0;
+                    if (ally.GetComponent<Friendly>().isBlock)
+                    {
+                        blockModifier = .5f;
+                    }
+
+                    float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
+
+                    int calcDamage = (int)((this.currAttack + attack.attackDamage - Hero.GetComponent<Friendly>().defense) * Random.Range(.8f, 1.2f) * (1 - blockModifier) * elemintalModifier);
+
+                    if (calcDamage < 1)
+                    {
+                        calcDamage = 1;
+                    }
+                    ally.GetComponent<Friendly>().TakeDamage(calcDamage);
+                }
+            }
+            else
+            {
+                Type heroType = Hero.GetComponent<Friendly>().type;
+                float blockModifier = 0;
+                if (Hero.GetComponent<Friendly>().isBlock)
+                {
+                    blockModifier = .5f;
+                }
+
+                float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
+
+                int calcDamage = (int)((this.currAttack + attack.attackDamage - Hero.GetComponent<Friendly>().defense) * Random.Range(.8f, 1.2f) * (1 - blockModifier) * elemintalModifier);
+
+                if (calcDamage < 1)
+                {
+                    calcDamage = 1;
+                }
+                Hero.GetComponent<Friendly>().TakeDamage(calcDamage);
+            }
         }
-        Hero.GetComponent<Friendly>().TakeDamage(calcDamage);
+        
+        else
+        {
+            if (attack.target == Attack.Target.Multiple)
+            {
+                foreach (GameObject ally in battleManager.Heros)
+                {
+                    Type heroType = ally.GetComponent<Friendly>().type;
+
+                    float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
+
+                    int calcDamage = (int)((this.currMagic + attack.attackDamage - ally.GetComponent<Friendly>().currMagic) * Random.Range(.8f, 1.2f) * elemintalModifier);
+
+                    if (calcDamage < 1)
+                    {
+                        calcDamage = 1;
+                    }
+                    ally.GetComponent<Friendly>().TakeDamage(calcDamage);
+                }
+            }
+            else
+            {
+                Type heroType = Hero.GetComponent<Friendly>().type;
+
+                float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
+
+                int calcDamage = (int)((this.currAttack + attack.attackDamage - Hero.GetComponent<Friendly>().defense) * Random.Range(.8f, 1.2f) * elemintalModifier);
+
+                if (calcDamage < 1)
+                {
+                    calcDamage = 1;
+                }
+                Hero.GetComponent<Friendly>().TakeDamage(calcDamage);
+            }
+        }
     }
 
     //Similar way of hanlding helath
