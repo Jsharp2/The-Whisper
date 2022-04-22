@@ -38,6 +38,8 @@ public class Enemy : Character
     public float calcHealth;
 
     private bool alive = true;
+
+    public bool isBlock = false;
     // Start is called before the first frame update
     new public void Start()
     {
@@ -205,7 +207,7 @@ public class Enemy : Character
 
                     float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
 
-                    int calcDamage = (int)((this.currAttack + attack.attackDamage - Hero.GetComponent<Friendly>().defense) * Random.Range(.8f, 1.2f) * (1 - blockModifier) * elemintalModifier);
+                    int calcDamage = (int)((this.currAttack + attack.attackDamage - ally.GetComponent<Friendly>().defense) * Random.Range(.8f, 1.2f) * (1 - blockModifier) * elemintalModifier);;
 
                     if (calcDamage < 1)
                     {
