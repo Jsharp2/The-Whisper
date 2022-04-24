@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ae815d07b664648af836c8c6f3379f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 4
   maxHP: 45
   currHP: 30
   attack: 18
@@ -123,6 +123,7 @@ MonoBehaviour:
   Hero: {fileID: 0}
   indicator: {fileID: 6965935407040192176, guid: b1c5e10bf135a384fb5df018cf1548e3, type: 3}
   calcHealth: 0
+  isBlock: 0
 --- !u!1 &2629390697468869976
 GameObject:
   m_ObjectHideFlags: 0

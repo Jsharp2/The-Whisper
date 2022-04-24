@@ -42,7 +42,7 @@ public class MagicAttackButton : MonoBehaviour
         {
             transform.parent.transform.parent.transform.parent.gameObject.transform.Find("Spell Desciption Panel").gameObject.SetActive(true);
             transform.parent.transform.parent.transform.parent.gameObject.transform.Find("Spell Desciption Panel").transform.Find("Spell Name").gameObject.GetComponent<Text>().text = magicAttackToPerform.attackName;
-            transform.parent.transform.parent.transform.parent.gameObject.transform.Find("Spell Desciption Panel").transform.Find("Spell Description").gameObject.GetComponent<Text>().text = magicAttackToPerform.attackDescription + "\n Cost: " +magicAttackToPerform.attackCost.ToString() + "MP" + "\n Type: " + magicAttackToPerform.type;
+            transform.parent.transform.parent.transform.parent.gameObject.transform.Find("Spell Desciption Panel").transform.Find("Spell Description").gameObject.GetComponent<Text>().text = magicAttackToPerform.attackDescription + "\n Cost: " +magicAttackToPerform.attackCost.ToString() + "MP" + "\n Type: " + magicAttackToPerform.type + " Target: " + magicAttackToPerform.target;
 
         }
         else
