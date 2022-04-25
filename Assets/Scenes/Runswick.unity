@@ -431,6 +431,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: West Wall Lower
       objectReference: {fileID: 0}
+    - target: {fileID: 7184114435072785990, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7616710022707734593, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -449,7 +453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.319605
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7934582426363317730, guid: 4462d5b5a9d08f449ae1760c97d0ea36, type: 3}
       propertyPath: m_LocalRotation.w
@@ -584,7 +588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4774307275930182413, guid: dd2a5a70db1b3ad4ab4cee2b553f37be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4774307275930182413, guid: dd2a5a70db1b3ad4ab4cee2b553f37be, type: 3}
       propertyPath: m_LocalRotation.w
