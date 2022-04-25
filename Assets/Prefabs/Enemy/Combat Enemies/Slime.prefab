@@ -265,9 +265,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   maxHP: 60
-  currHP: 30
+  currHP: 60
   attack: 12
-  currAttack: 10
+  currAttack: 12
   defense: 8
   currDefense: 8
   magic: 0
@@ -277,7 +277,7 @@ MonoBehaviour:
   maxCharge: 6
   curCharge: 0
   attacks:
-  - {fileID: 7148322526693028153, guid: 8851144e49b6dcf40bdd376ff6e297f7, type: 3}
+  - {fileID: 8407528465817848780, guid: 53a2da2499f2d7b438f04cb8d5aea9fc, type: 3}
   magicAttacks: []
   minHealthVarience: 0.8
   maxHealthVarience: 1.2
@@ -287,6 +287,7 @@ MonoBehaviour:
   Hero: {fileID: 0}
   indicator: {fileID: 6965935407040192176, guid: b1c5e10bf135a384fb5df018cf1548e3, type: 3}
   calcHealth: 0
+  isBlock: 0
 --- !u!1 &9010402875100666159
 GameObject:
   m_ObjectHideFlags: 0

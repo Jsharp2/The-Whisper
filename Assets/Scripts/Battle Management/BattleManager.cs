@@ -385,6 +385,18 @@ public class BattleManager : MonoBehaviour
         //Adds it to the list of buttons made
         atkBtns.Add(magicButton);
 
+        //Creates the inventory button and gives it proper text
+        GameObject inventoryButton = Instantiate(actionButton) as GameObject;
+        Text inventoryButtonText = inventoryButton.transform.Find("Text").gameObject.GetComponent<Text>();
+        inventoryButtonText.text = "Inventory";
+
+        //Sets it's listener and parent
+        inventoryButton.GetComponent<Button>().onClick.AddListener(() => OpenInventory());
+        inventoryButton.transform.SetParent(actionSpacer, false);
+
+        //Adds it to the list of buttons made
+        atkBtns.Add(inventoryButton);
+
         //Creates the block button and gives it proper text
         GameObject blockButton = Instantiate(actionButton) as GameObject;
         Text blockButtonText = blockButton.transform.Find("Text").gameObject.GetComponent<Text>();
@@ -477,7 +489,7 @@ public class BattleManager : MonoBehaviour
         character.battleManager.battleStates = BattleManager.PerformAction.WAIT;
         character.curCharge /= 2;
         character.currentState = Friendly.TurnState.CHARGING;
-        HerosToManage.Clear();
+        HerosToManage.RemoveAt(0);
         clearAttackPanel();
         heroInput = HEROGUI.ACTIVATE;
     }
@@ -517,6 +529,11 @@ public class BattleManager : MonoBehaviour
             clearAttackPanel();
             heroInput = HEROGUI.ACTIVATE; 
         }
+    }
+
+    public void OpenInventory()
+    {
+        Debug.Log("Gamer");
     }
 
     private void SaveValues(string character, int HP, int MP)

@@ -143,9 +143,18 @@ public class Enemy : Character
             myAttack.Attacked = battleManager.Heros[Random.Range(0, battleManager.Heros.Count)];
             myAttack.Type = "Enemy";
 
-            int attack = Random.Range(0, this.attacks.Count);
-            myAttack.choosenAttack = this.attacks[attack];
+            int attack = Random.Range(0, this.attacks.Count + this.magicAttacks.Count);
 
+            if(attack < this.attacks.Count)
+            {
+                myAttack.choosenAttack = this.attacks[attack];
+            }
+            else
+            {
+                attack = Random.Range(0, this.magicAttacks.Count);
+                myAttack.choosenAttack = this.magicAttacks[attack - this.attacks.Count];
+            }
+            
             battleManager.CollectActions(myAttack);
         }
     }
@@ -159,19 +168,28 @@ public class Enemy : Character
         }
 
         actionStarted = true;
-        Vector3 heroPosition = new Vector3(Hero.transform.position.x + 2f, Hero.transform.position.y, Hero.transform.position.z);
-        while(MoveTowardTarget(heroPosition))
+        if(battleManager.PerformList[0].choosenAttack.target == Attack.Target.Single)
         {
-            yield return null;
+            Vector3 heroPosition = new Vector3(Hero.transform.position.x + 2f, Hero.transform.position.y, Hero.transform.position.z);
+            while (MoveTowardTarget(heroPosition))
+            {
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(.5f);
+
+            DoDamage();
+
+            while (MoveTowardTarget(startPosition))
+            {
+                yield return null;
+            }
         }
-
-        yield return new WaitForSeconds(.5f);
-
-        DoDamage();
-
-        while (MoveTowardTarget(startPosition))
+        else
         {
-            yield return null;
+            //Waits half a second, then attacks
+            yield return new WaitForSeconds(.5f);
+            DoDamage();
         }
 
         battleManager.PerformList.RemoveAt(0);
@@ -207,7 +225,7 @@ public class Enemy : Character
 
                     float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
 
-                    int calcDamage = (int)((this.currAttack + attack.attackDamage - ally.GetComponent<Friendly>().defense) * Random.Range(.8f, 1.2f) * (1 - blockModifier) * elemintalModifier);;
+                    int calcDamage = (int)((this.currAttack + attack.attackDamage - ally.GetComponent<Friendly>().currDefense) * Random.Range(.8f, 1.2f) * (1 - blockModifier) * elemintalModifier * .8f);
 
                     if (calcDamage < 1)
                     {
@@ -227,7 +245,7 @@ public class Enemy : Character
 
                 float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
 
-                int calcDamage = (int)((this.currAttack + attack.attackDamage - Hero.GetComponent<Friendly>().defense) * Random.Range(.8f, 1.2f) * (1 - blockModifier) * elemintalModifier);
+                int calcDamage = (int)((this.currAttack + attack.attackDamage - Hero.GetComponent<Friendly>().currDefense) * Random.Range(.8f, 1.2f) * (1 - blockModifier) * elemintalModifier);
 
                 if (calcDamage < 1)
                 {
@@ -247,7 +265,7 @@ public class Enemy : Character
 
                     float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
 
-                    int calcDamage = (int)((this.currMagic + attack.attackDamage - ally.GetComponent<Friendly>().currMagic) * Random.Range(.8f, 1.2f) * elemintalModifier);
+                    int calcDamage = (int)((this.currMagic + attack.attackDamage - ally.GetComponent<Friendly>().currMagic) * Random.Range(.8f, 1.2f) * elemintalModifier * .8f);
 
                     if (calcDamage < 1)
                     {
@@ -262,7 +280,7 @@ public class Enemy : Character
 
                 float elemintalModifier = GameObject.Find("GameManager").GetComponent<GameManager>().Effectiveness(attack.type, heroType);
 
-                int calcDamage = (int)((this.currAttack + attack.attackDamage - Hero.GetComponent<Friendly>().defense) * Random.Range(.8f, 1.2f) * elemintalModifier);
+                int calcDamage = (int)((this.currMagic + attack.attackDamage - Hero.GetComponent<Friendly>().currMagic) * Random.Range(.8f, 1.2f) * elemintalModifier);
 
                 if (calcDamage < 1)
                 {

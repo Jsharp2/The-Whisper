@@ -97,22 +97,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  maxHP: 100
-  currHP: 100
-  attack: 17
-  currAttack: 17
-  defense: 15
-  currDefense: 0
-  magic: 0
-  currMagic: 0
-  currMP: 80
-  maxMP: 80
+  maxHP: 120
+  currHP: 120
+  attack: 15
+  currAttack: 15
+  defense: 8
+  currDefense: 8
+  magic: 12
+  currMagic: 12
+  currMP: 100
+  maxMP: 100
   maxCharge: 4.5
   curCharge: 0
   attacks:
   - {fileID: 7148322526693028153, guid: 8851144e49b6dcf40bdd376ff6e297f7, type: 3}
   magicAttacks:
   - {fileID: 4799859383725762094, guid: c8826788b252f3142a2e79fe68060c0a, type: 3}
+  - {fileID: 5994275985352335732, guid: e1747d8b6b43f9c48909a49d36b50ad7, type: 3}
   battleManager: {fileID: 0}
   progressBar: {fileID: 0}
   hpDisplay: {fileID: 0}
@@ -122,6 +123,7 @@ MonoBehaviour:
   Selector: {fileID: 4510624210212494085}
   indicator: {fileID: 6965935407040192176, guid: b1c5e10bf135a384fb5df018cf1548e3, type: 3}
   isBlock: 0
+  Position: 0
   currentState: 0
 --- !u!1001 &4525015978641976168
 PrefabInstance:

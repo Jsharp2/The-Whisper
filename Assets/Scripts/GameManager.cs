@@ -20,12 +20,11 @@ public class GameManager : MonoBehaviour
 
     public string previousScene;
 
-    public bool isWalking = false;
-    public bool canGetEncounter = false;
-    public bool Attacked = false;
 
     public Dictionary<string, int> healthRemaining = new Dictionary<string, int>();
     public Dictionary<string, int> magicRemaining = new Dictionary<string, int>();
+
+    public Dictionary<Item, int> Inventory = new Dictionary<Item, int>();
 
     public List<GameObject> enemiestoSave = new List<GameObject>();
 
@@ -56,6 +55,8 @@ public class GameManager : MonoBehaviour
 
     public float enounter = 10000;
 
+    public float multiHitMultiplier = .75f;
+
     //Ensures that if an instance doesn't exist, one is made. If one does exists, removes it
     private void Awake()
     {
@@ -84,11 +85,6 @@ public class GameManager : MonoBehaviour
         {
             //If in the overworld and walking, see if an encounter will happen
             case (GameStates.WORLD_STATE):
-                //If they get attacked, go to battle
-                if(Attacked)
-                {
-                    gameStates = GameStates.BATTLE_STATE;
-                }
                 break;
             case (GameStates.TOWN_STATE):
                 break;
@@ -134,11 +130,6 @@ public class GameManager : MonoBehaviour
         //Loads the battle
         SceneManager.LoadScene(curRegions.battleScene);
 
-        //Sets variables for getting battles back to base.
-        isWalking = false;
-        Attacked = false;
-        canGetEncounter = false;
-
         GameObject[] spawnedEnemies = GameObject.FindGameObjectsWithTag("Spawned Enemies");
         foreach (GameObject enem in spawnedEnemies)
         {
@@ -172,6 +163,15 @@ public class GameManager : MonoBehaviour
         else
         {
             return 1;
+        }
+    }
+
+    public void DeleteEnemies()
+    {
+        foreach (GameObject enem in GameObject.FindGameObjectsWithTag("Spawned Enemies"))
+        {
+            enem.SetActive(false);
+            Destroy(enem);
         }
     }
 }

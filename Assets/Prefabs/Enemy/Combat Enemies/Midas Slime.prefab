@@ -100,21 +100,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
-  maxHP: 45
-  currHP: 30
-  attack: 18
-  currAttack: 10
+  maxHP: 90
+  currHP: 90
+  attack: 7
+  currAttack: 0
   defense: 12
-  currDefense: 8
-  magic: 0
+  currDefense: 12
+  magic: 10
   currMagic: 0
   currMP: 0
   maxMP: 0
-  maxCharge: 5
+  maxCharge: 6
   curCharge: 0
   attacks:
-  - {fileID: 7148322526693028153, guid: 8851144e49b6dcf40bdd376ff6e297f7, type: 3}
-  magicAttacks: []
+  - {fileID: 8407528465817848780, guid: 53a2da2499f2d7b438f04cb8d5aea9fc, type: 3}
+  magicAttacks:
+  - {fileID: 4799859383725762094, guid: c8826788b252f3142a2e79fe68060c0a, type: 3}
   minHealthVarience: 0.8
   maxHealthVarience: 1.2
   currentState: 0

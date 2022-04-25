@@ -98,18 +98,19 @@ MonoBehaviour:
   type: 3
   maxHP: 125
   currHP: 125
-  attack: 15
-  currAttack: 15
-  defense: 30
-  currDefense: 30
-  magic: 0
-  currMagic: 0
+  attack: 12
+  currAttack: 12
+  defense: 25
+  currDefense: 25
+  magic: 15
+  currMagic: 15
   currMP: 0
   maxMP: 0
   maxCharge: 8
   curCharge: 0
   attacks: []
-  magicAttacks: []
+  magicAttacks:
+  - {fileID: 1891893822695109431, guid: 96532a727e0dabb4a92f283b4881f5cd, type: 3}
   minHealthVarience: 0
   maxHealthVarience: 0
   currentState: 0
@@ -118,3 +119,4 @@ MonoBehaviour:
   Hero: {fileID: 0}
   indicator: {fileID: 0}
   calcHealth: 0
+  isBlock: 0

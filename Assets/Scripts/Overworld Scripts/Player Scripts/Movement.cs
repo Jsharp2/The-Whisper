@@ -79,16 +79,6 @@ public class Movement : MonoBehaviour
 		transform.position = position;
 		curPosition = transform.position;
 
-		//Checks if the player has moved to check for encounters
-		if(curPosition == lastPosition)
-        {
-			GameManager.instance.isWalking = false;
-        }
-        else
-        {
-			GameManager.instance.isWalking = true;
-		}
-
 		lastPosition = curPosition;
 	}
 
@@ -106,11 +96,7 @@ public class Movement : MonoBehaviour
 				GameManager.instance.scenetoLoad = handler.sceneToLoad;
 				GameManager.instance.LoadScene();
 				GameObject[] spawnedEnemies = GameObject.FindGameObjectsWithTag("Spawned Enemies");
-				foreach (GameObject enem in spawnedEnemies)
-				{
-					enem.SetActive(false);
-					Destroy(enem);
-				}
+				GameManager.instance.DeleteEnemies();
 			}
 		}
 		else if(NPC != null)
@@ -136,21 +122,4 @@ public class Movement : MonoBehaviour
 		interact.SetActive(false);
 	}
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-		//Player can keep getting encounters until they leave a zone
-		if (other.tag == "EncounterZone")
-		{
-			GameManager.instance.canGetEncounter = true;
-        }
-    }
-
-	private void OnTriggerExit2D(Collider2D other)
-	{
-		//Once they leave, remove the ability to get enounters
-		if (other.tag == "EncounterZone")
-		{
-			GameManager.instance.canGetEncounter = false;
-		}
-	}
 }
