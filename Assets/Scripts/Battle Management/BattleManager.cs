@@ -43,9 +43,11 @@ public class BattleManager : MonoBehaviour
     public GameObject attackPanel;
     public GameObject enemySelectPanel;
     public GameObject magicPanel;
+    public GameObject Inventory;
 
     public Transform actionSpacer;
     public Transform magicSpacer;
+
     public GameObject actionButton;
     public GameObject baseMagicButton;
 
@@ -116,6 +118,7 @@ public class BattleManager : MonoBehaviour
         enemySelectPanel.SetActive(false);
         magicPanel.SetActive(false);
         spellPanel.SetActive(false);
+        Inventory.SetActive(false);
 
         GameManager.instance.healthRemaining.Clear();
         GameManager.instance.magicRemaining.Clear();

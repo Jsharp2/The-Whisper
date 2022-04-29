@@ -11,5 +11,7 @@ public class GoBackButton : MonoBehaviour
         Debug.Log(lastScreen);
         //lastScreen.SetActive(true);
         Debug.Log(gameObject.transform.parent);
+        lastScreen.SetActive(true);
+        transform.parent.gameObject.SetActive(false);
     }
 }

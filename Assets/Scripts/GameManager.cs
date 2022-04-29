@@ -20,11 +20,8 @@ public class GameManager : MonoBehaviour
 
     public string previousScene;
 
-
     public Dictionary<string, int> healthRemaining = new Dictionary<string, int>();
     public Dictionary<string, int> magicRemaining = new Dictionary<string, int>();
-
-    public Dictionary<Item, int> Inventory = new Dictionary<Item, int>();
 
     public List<GameObject> enemiestoSave = new List<GameObject>();
 
