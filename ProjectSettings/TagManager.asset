@@ -11,6 +11,7 @@ TagManager:
   - Teleporter
   - EncounterZone
   - Spawned Enemies
+  - Tilemap
   layers:
   - Default
   - TransparentFX

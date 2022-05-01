@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class Enemy : Character
 {
     //RNG Health for somewhat intersting fights
-    public float minHealthVarience;
-    public float maxHealthVarience;
+    public float minHealthVarience = .8f;
+    public float maxHealthVarience = 1.2f;
 
     private BattleManager battleManager;
 
@@ -40,6 +40,8 @@ public class Enemy : Character
     private bool alive = true;
 
     public bool isBlock = false;
+
+    public float baseScale;
     // Start is called before the first frame update
     new public void Start()
     {
@@ -50,10 +52,11 @@ public class Enemy : Character
         currentState = TurnState.CHARGING;
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         startPosition = transform.position;
-        
+
+        baseScale = healthBar.transform.localScale.x;
         //Calculates HP (if any enemy was to start at not full) and sets up the health bar accordingly
         calcHealth = currHP / maxHP;
-        healthBar.transform.localScale = new Vector3(Mathf.Clamp(calcHealth, 0, 1), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+        healthBar.transform.localScale = new Vector3(Mathf.Clamp(calcHealth, 0, 1) * baseScale, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 
     // Update is called once per frame
@@ -300,7 +303,7 @@ public class Enemy : Character
         
         //The percent health they have has be calculated this way as they're both ints
         calcHealth = ((float)currHP / maxHP);
-        healthBar.transform.localScale = new Vector3(Mathf.Clamp(calcHealth, 0, 1), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+        healthBar.transform.localScale = new Vector3(Mathf.Clamp(calcHealth, 0, 1) * baseScale, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 
         //Creates the number that floats when a character takes damage
         GameObject damage = Instantiate(indicator, gameObject.transform.position, Quaternion.identity) as GameObject;

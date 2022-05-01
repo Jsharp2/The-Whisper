@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Runswick Inn.unity
     guid: afc1239e016679e46bcde75a8a48625b
+  - enabled: 1
+    path: Assets/Scenes/Forest.unity
+    guid: 761cfcd5d70dfad42ac5c5481f8fc813
   m_configObjects: {}
