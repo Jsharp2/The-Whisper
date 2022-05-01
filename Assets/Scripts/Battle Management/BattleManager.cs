@@ -59,6 +59,8 @@ public class BattleManager : MonoBehaviour
     private List<GameObject> enemyButtons = new List<GameObject>();
 
     public List<Transform> spawnPoints = new List<Transform>();
+
+    public string attack = "Magic"; 
     //private Dictionary<string, int> healthRemaining = new Dictionary<string, int>();
 
     private void Awake()
@@ -317,13 +319,13 @@ public class BattleManager : MonoBehaviour
     public void Attack()
     {
         playerChoice.AttackerName = HerosToManage[0].name;
-        clearAttackPanel();
         playerChoice.Attacker = HerosToManage[0];
         playerChoice.Type = "Hero";
         playerChoice.choosenAttack = HerosToManage[0].GetComponent<Friendly>().attacks[0];
         attackType = playerChoice.choosenAttack.type;
         attackPanel.SetActive(false);
         enemySelectPanel.SetActive(true);
+        attack = "Physical";
     }
 
     //Establishes which enemy the player is attacking
@@ -388,17 +390,17 @@ public class BattleManager : MonoBehaviour
         //Adds it to the list of buttons made
         atkBtns.Add(magicButton);
 
-        //Creates the inventory button and gives it proper text
-        GameObject inventoryButton = Instantiate(actionButton) as GameObject;
-        Text inventoryButtonText = inventoryButton.transform.Find("Text").gameObject.GetComponent<Text>();
-        inventoryButtonText.text = "Inventory";
+        ////Creates the inventory button and gives it proper text
+        //GameObject inventoryButton = Instantiate(actionButton) as GameObject;
+        //Text inventoryButtonText = inventoryButton.transform.Find("Text").gameObject.GetComponent<Text>();
+        //inventoryButtonText.text = "Inventory";
 
-        //Sets it's listener and parent
-        inventoryButton.GetComponent<Button>().onClick.AddListener(() => OpenInventory());
-        inventoryButton.transform.SetParent(actionSpacer, false);
+        ////Sets it's listener and parent
+        //inventoryButton.GetComponent<Button>().onClick.AddListener(() => OpenInventory());
+        //inventoryButton.transform.SetParent(actionSpacer, false);
 
         //Adds it to the list of buttons made
-        atkBtns.Add(inventoryButton);
+        //atkBtns.Add(inventoryButton);
 
         //Creates the block button and gives it proper text
         GameObject blockButton = Instantiate(actionButton) as GameObject;
@@ -481,6 +483,7 @@ public class BattleManager : MonoBehaviour
     {
         attackPanel.SetActive(false);
         magicPanel.SetActive(true);
+        attack = "Magic";
     }
     
     //Player decides to block. Removes all the unneed items and sets them to block until their next go around.

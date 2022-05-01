@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject enemytoDestory;
 
+    public bool hasKey = false;
+
     public Text test;
     //public Dictionary<string, int> exp= new Dictionary<string, int>();
 

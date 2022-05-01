@@ -67,6 +67,7 @@ public class SpawnRegion : MonoBehaviour
         Vector3 transform = gameObject.GetComponent<Transform>().position;
         GameObject enemy = Instantiate(overworldEnemies[Random.Range(0, overworldEnemies.Count)], new Vector3(Random.Range(transform.x - (renderer.x/2), transform.x + (renderer.x / 2)), Random.Range(transform.y - (renderer.y / 2), transform.y + (renderer.y / 2)), 0), Quaternion.identity) as GameObject;
         enemy.GetComponent<OverworldEnemy>().home = gameObject.GetComponent<SpawnRegion>();
+        enemy.GetComponent<OverworldEnemy>().distance = distance;
         DontDestroyOnLoad(enemy);
     }
 }

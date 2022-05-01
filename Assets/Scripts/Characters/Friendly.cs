@@ -194,6 +194,7 @@ public class Friendly : Character
         //Locates the enemy they are attacking
         if(Position == Attack.Target.Single)
         {
+            gameObject.transform.Find("Dirt Patch").gameObject.SetActive(false);
             Vector3 enemyPosition = new Vector3(EnemytoAttack.transform.position.x - 2f, EnemytoAttack.transform.position.y, EnemytoAttack.transform.position.z);
             //Moves towards the enemy
             while (MoveTowardTarget(enemyPosition))
@@ -211,6 +212,7 @@ public class Friendly : Character
             {
                 yield return null;
             }
+            gameObject.transform.Find("Dirt Patch").gameObject.SetActive(true);
         }
         else
         {

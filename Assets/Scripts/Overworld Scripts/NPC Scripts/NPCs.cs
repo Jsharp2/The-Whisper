@@ -40,7 +40,7 @@ public class NPCs : MonoBehaviour
     public float offset = 5f;
 
     //Handles if they can move around
-    bool canMove = false;
+    bool canMove = true;
 
     //Handles how long an NPC will stand still until they move again
     public float minWait = 2f;
@@ -89,130 +89,31 @@ public class NPCs : MonoBehaviour
         //Checks which way the NPC goes
         if(direction == Direction.West)
         {
-            //If the NPC can't move, checks rotation code
-            if(!canMove)
-            {
-                //If the NPC is in within the range to stop rotating, orientates them correctly, allows them to move, the stop the rotation
-                if (transform.rotation.eulerAngles.z <= 180 + offset && transform.rotation.eulerAngles.z >= 180 - offset)
-                {
-                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
-                    canMove = true;
-                    rotationAngle = null;
-                }
-                //Otherwise, it sees if it has the correct way to rotate
-                else
-                {
-                    if (rotationAngle == null)
-                    {
-                        //Ensures that it takes the fastest way to rotate.
-                        if (transform.rotation.eulerAngles.z <= 180)
-                        {
-                            rotationAngle = "Counterclockwise";
-                        }
-                        else
-                        {
-                            rotationAngle = "Clockwise";
-                        }
-                    }
-                }
-            }
+            transform.localScale = new Vector3(-1, 1, 1);
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
         //Same stuff as above, but for East
         else if (direction == Direction.East)
         {
-            if(!canMove)
-            {
-                if (transform.rotation.eulerAngles.z <= 0 + offset && transform.rotation.eulerAngles.z >= 0 - offset)
-                {
-                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-                    canMove = true;
-                    rotationAngle = null;
-                }
-                else
-                {
-                    if (rotationAngle == null)
-                    {
-                        if (transform.rotation.eulerAngles.z > 180)
-                        {
-                            rotationAngle = "Counterclockwise";
-                        }
-                        else
-                        {
-                            rotationAngle = "Clockwise";
-                        }
-                    }
-                }
-            }
+            transform.localScale = new Vector3(1, 1, 1);
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
         //Same stuff as above, but for North
         else if (direction == Direction.North)
         {
-            if(!canMove)
-            {
-                if (transform.rotation.eulerAngles.z <= 90 + offset && transform.rotation.eulerAngles.z >= 90 - offset)
-                {
-                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
-                    canMove = true;
-                    rotationAngle = null;
-                }
-                else
-                {
-                    if (rotationAngle == null)
-                    {
-                        if (transform.rotation.eulerAngles.z <= 270 && transform.rotation.eulerAngles.z >= 90)
-                        {
-                            rotationAngle = "Clockwise";
-                        }
-                        else
-                        {
-                            rotationAngle = "Counterclockwise";
-                        }
-                    }
-                }
-            }
+            transform.localScale = new Vector3(1, 1, 1);
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
         }
         //Same stuff as above, but for South
         else if (direction == Direction.South)
         {
-            if (!canMove)
-            {
-                if (transform.rotation.eulerAngles.z <= 270 + offset && transform.rotation.eulerAngles.z >= 270 - offset)
-                {
-                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, 270));
-                    canMove = true;
-                    rotationAngle = null;
-                }
-                else
-                {
-                    if (rotationAngle == null)
-                    {
-                        if (transform.rotation.eulerAngles.z > 90 && transform.rotation.eulerAngles.z < 270)
-                        {
-                            rotationAngle = "Counterclockwise";
-                        }
-                        else
-                        {
-                            rotationAngle = "Clockwise";
-                        }
-                    }
-                    canMove = false;
-                }
-            }
+            transform.localScale = new Vector3(-1, 1, 1);
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
         }
         //If it's supposed to be waiting, stops rotating (fixes a bug)
         else if(direction == Direction.Wait)
         {
             rotationAngle = null;
-        }
-
-        //If the character's fastest way is clock wise, go that way. Otherwise, goes counterclockwise
-        if(rotationAngle == "Clockwise")
-        {
-            transform.Rotate(0, 0, -orientationSpeed * Time.deltaTime);
-        }
-        else if(rotationAngle == "Counterclockwise")
-        {
-            transform.Rotate(0, 0, orientationSpeed * Time.deltaTime);
         }
 
         #endregion
@@ -304,7 +205,8 @@ public class NPCs : MonoBehaviour
                 else
                 {
                     previousDirection = direction;
-                    direction = (Direction)System.Enum.ToObject(typeof(Direction),Random.Range(0,3));
+                    direction = (Direction)System.Enum.ToObject(typeof(Direction),Random.Range(0,4));
+                    canMove = true;
                 }
             }
         }

@@ -170,6 +170,7 @@ public class Enemy : Character
         actionStarted = true;
         if(battleManager.PerformList[0].choosenAttack.target == Attack.Target.Single)
         {
+            gameObject.transform.Find("Dirt Patch").gameObject.SetActive(false);
             Vector3 heroPosition = new Vector3(Hero.transform.position.x + 2f, Hero.transform.position.y, Hero.transform.position.z);
             while (MoveTowardTarget(heroPosition))
             {
@@ -184,6 +185,7 @@ public class Enemy : Character
             {
                 yield return null;
             }
+            gameObject.transform.Find("Dirt Patch").gameObject.SetActive(true);
         }
         else
         {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OverworldEnemy : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class OverworldEnemy : MonoBehaviour
     {
         Roaming,
         Horizontal,
-        Vertical
+        Vertical,
+        Still
     }
 
     public enum Direction
@@ -69,6 +71,10 @@ public class OverworldEnemy : MonoBehaviour
         //Gets a random distance to move
         allowedRoamDistance = Random.Range(0, maxDistanceFromStart);
         direction = (Direction)System.Enum.ToObject(typeof(Direction), Random.Range(0, 3));
+        if(movement == Movement.Still)
+        {
+            canMove = false;
+        }
     }
 
 
@@ -187,10 +193,18 @@ public class OverworldEnemy : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            GameManager.instance.enemiestoSave.Clear();
-            GameManager.instance.curRegions = gameObject.GetComponent<RegionData>();
-            GameManager.instance.enemytoDestory = gameObject;
-            GameManager.instance.StartBattle();
+            if (SceneManager.GetActiveScene().name == "Title")
+            {
+                Destroy(gameObject);
+                Debug.Log("Hello");
+            }
+            else
+            {
+                GameManager.instance.enemiestoSave.Clear();
+                GameManager.instance.curRegions = gameObject.GetComponent<RegionData>();
+                GameManager.instance.enemytoDestory = gameObject;
+                GameManager.instance.StartBattle();
+            }
         }
     }
 }

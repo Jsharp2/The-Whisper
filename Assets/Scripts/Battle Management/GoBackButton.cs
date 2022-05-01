@@ -8,6 +8,13 @@ public class GoBackButton : MonoBehaviour
 
     public void GoBack()
     {
+        if(transform.parent.gameObject == GameObject.Find("Target Panel"))
+        {
+            if(GameObject.Find("BattleManager").GetComponent<BattleManager>().attack == "Magic")
+            {
+                lastScreen = GameObject.Find("Magic Panel");
+            }
+        }
         Debug.Log(lastScreen);
         //lastScreen.SetActive(true);
         Debug.Log(gameObject.transform.parent);
