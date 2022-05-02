@@ -233,6 +233,10 @@ public class NPCs : MonoBehaviour
         if(collision.tag == "Player")
         {
             collision.gameObject.transform.Find("Interact").transform.gameObject.SetActive(true);
+            if(Input.GetAxis("Interact") > 0)
+            {
+                healTeam();
+            }
         }    
     }
 
@@ -256,6 +260,7 @@ public class NPCs : MonoBehaviour
             }
             GameManager.instance.healthRemaining.Clear();
             GameManager.instance.magicRemaining.Clear();
+            AudioManager.Play(AudioClipName.Heal);
             foreach (string character in characters)
             {
                 GameManager.instance.healthRemaining[character] = 9999;

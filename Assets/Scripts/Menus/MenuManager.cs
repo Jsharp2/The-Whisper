@@ -14,6 +14,7 @@ public static class MenuManager
     /// <param name="name">name of the menu to go to</param>
     public static void GoToMenu(MenuName name)
     {
+        GameObject mainMenuCanvas = GameObject.Find("Canvas");
         switch (name)
         {
             //case MenuName.Difficulty:
@@ -34,13 +35,27 @@ public static class MenuManager
             case MenuName.Instructions:
 
                 // deactivate MainMenuCanvas and instantiate prefab
-                GameObject mainMenuCanvas = GameObject.Find("Canvas");
                 if (mainMenuCanvas != null)
                 {
                     mainMenuCanvas.SetActive(false);
                 }
                 Object.Instantiate(Resources.Load("Instructions"));
+                Object.Destroy(GameObject.Find("TitleCanvas"));
+                Object.Destroy(GameObject.Find("TitleCanvas(Clone)"));
                 break;
+
+            case MenuName.Resources:
+
+                // deactivate MainMenuCanvas and instantiate prefab
+                if (mainMenuCanvas != null)
+                {
+                    mainMenuCanvas.SetActive(false);
+                }
+                Object.Instantiate(Resources.Load("Resources"));
+                Object.Destroy(GameObject.Find("TitleCanvas"));
+                Object.Destroy(GameObject.Find("TitleCanvas(Clone)"));
+                break;
+
             case MenuName.Pause:
 
                 if (GameObject.Find("Pause Menu(Clone)") == null)

@@ -9,7 +9,8 @@ public class Instructions : MonoBehaviour
     {
         // unpause game, destroy menu, and go to main menu
         Time.timeScale = 1;
+        Debug.Log(gameObject);
         Destroy(gameObject);
-        MenuManager.GoToMenu(MenuName.Main);
+        Object.Instantiate(Resources.Load("TitleCanvas"));
     }
 }

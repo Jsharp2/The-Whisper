@@ -6,5 +6,10 @@ public enum AudioClipName
 { 
     Battle,
     Fireball,
-    Title
+    Title,
+    Overworld,
+    Forest,
+    Village,
+    Victory,
+    Heal
 }

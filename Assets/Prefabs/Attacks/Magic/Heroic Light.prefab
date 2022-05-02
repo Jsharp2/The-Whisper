@@ -48,5 +48,5 @@ MonoBehaviour:
   attackDamage: 30
   attackCost: 15
   type: 4
-  target: 1
+  target: 0
   style: 1

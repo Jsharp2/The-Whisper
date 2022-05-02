@@ -294,7 +294,7 @@ public class Friendly : Character
                     {
                         calcDamage = 1;
                     }
-                    enemy.GetComponent<Friendly>().TakeDamage(calcDamage);
+                    enemy.GetComponent<Enemy>().TakeDamage(calcDamage);
                 }
             }
             else

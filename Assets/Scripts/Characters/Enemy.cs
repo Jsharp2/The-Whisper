@@ -89,6 +89,7 @@ public class Enemy : Character
                     }
                     else
                     {
+                        Debug.Log("Enemy Dead");
                         //Hanles the same way the player does when dying
                         this.gameObject.tag = "Dead Enemy";
 
@@ -102,10 +103,12 @@ public class Enemy : Character
                                     if (battleManager.PerformList[i].Attacker == this.gameObject)
                                     {
                                         battleManager.PerformList.Remove(battleManager.PerformList[i]);
+                                        Debug.Log("Removed from Perform List");
                                     }
 
                                     if (battleManager.PerformList[i].Attacked == this.gameObject)
                                     {
+                                        Debug.Log("Attack Redirected");
                                         battleManager.PerformList[i].Attacked = battleManager.Enemies[Random.Range(0, battleManager.Enemies.Count)];
                                     }
                                 }

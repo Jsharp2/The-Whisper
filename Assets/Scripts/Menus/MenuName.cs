@@ -11,5 +11,6 @@ public enum MenuName
     Instructions,
     Pause,
     GameOver,
+    Resources,
     Victory
 }

@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour
     static Dictionary<AudioClipName, AudioClip> audioClips =
         new Dictionary<AudioClipName, AudioClip>();
 
+    bool looping = false;
+
     /// <summary>
     /// Gets whether or not the audio manager has been initialized
     /// </summary>
@@ -32,7 +34,16 @@ public class AudioManager : MonoBehaviour
             Resources.Load<AudioClip>("FireBall"));
         audioClips.Add(AudioClipName.Title,
             Resources.Load<AudioClip>("Title"));
-        audioSource.playOnAwake = audioClips[AudioClipName.Title];
+        audioClips.Add(AudioClipName.Overworld,
+            Resources.Load<AudioClip>("Overworld"));
+        audioClips.Add(AudioClipName.Forest,
+            Resources.Load<AudioClip>("Forest"));
+        audioClips.Add(AudioClipName.Village,
+            Resources.Load<AudioClip>("Village"));
+        audioClips.Add(AudioClipName.Victory,
+            Resources.Load<AudioClip>("Victory"));
+        audioClips.Add(AudioClipName.Heal,
+            Resources.Load<AudioClip>("Heal"));
     }
 
     /// <summary>
@@ -43,5 +54,16 @@ public class AudioManager : MonoBehaviour
     {
         Debug.Log("Played: " + name);
         audioSource.PlayOneShot(audioClips[name]);
+        //audioSource.Play(0);
+    }
+
+    public static void ToggleLoop(bool soundLoop)
+    {
+        audioSource.loop = soundLoop;
+    }
+
+    public static void Stop()
+    {
+        audioSource.Stop();
     }
 }
