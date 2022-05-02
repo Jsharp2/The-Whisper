@@ -132,6 +132,9 @@ public class Friendly : Character
                         //Turns off the selector if it's on
                         Selector.SetActive(false);
 
+                        gameObject.transform.Find("Dirt Patch").gameObject.SetActive(false);
+                        gameObject.transform.Rotate(0, 0, -90);
+
                         //Sets the panels to not active
                         battleManager.attackPanel.SetActive(false);
                         battleManager.enemySelectPanel.SetActive(false);
@@ -259,6 +262,7 @@ public class Friendly : Character
         if (currHP <= 0)
         {
             currentState = TurnState.DEAD;
+            currHP = 0;
         }
         hpDisplay.text = "HP: " + currHP.ToString() + "/" + maxHP.ToString();
     }

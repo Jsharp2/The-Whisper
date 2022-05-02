@@ -73,6 +73,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(hasKey)
+        {
+            MenuManager.GoToMenu(MenuName.Victory);
+        }
         //Hanles pause menu (might be changed slightly during fights)
         if (Input.GetKeyDown(KeyCode.Escape))
         {

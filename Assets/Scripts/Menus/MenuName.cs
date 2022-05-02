@@ -9,5 +9,7 @@ public enum MenuName
     Gameplay,
     Main,
     Instructions,
-    Pause
+    Pause,
+    GameOver,
+    Victory
 }

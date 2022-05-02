@@ -53,7 +53,18 @@ public static class MenuManager
                     Object.Destroy(GameObject.Find("Pause Menu(Clone)"));
                     Time.timeScale = 1;
                 }
-                
+                break;
+
+            case MenuName.GameOver:
+                SceneManager.LoadScene("GameOver");
+                GameManager.instance.hasKey = false;
+                GameManager.instance.DeleteEnemies();
+                break;
+
+            case MenuName.Victory:
+                SceneManager.LoadScene("Victory");
+                GameManager.instance.hasKey = false;
+                GameManager.instance.DeleteEnemies();
                 break;
         }
     }

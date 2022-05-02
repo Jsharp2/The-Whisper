@@ -351,10 +351,10 @@ MonoBehaviour:
   currHP: 125
   attack: 12
   currAttack: 12
-  defense: 25
-  currDefense: 25
-  magic: 15
-  currMagic: 15
+  defense: 15
+  currDefense: 15
+  magic: 10
+  currMagic: 10
   currMP: 0
   maxMP: 0
   maxCharge: 8

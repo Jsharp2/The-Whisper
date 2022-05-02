@@ -203,7 +203,7 @@ public class BattleManager : MonoBehaviour
                         SaveValues(Heros[i].name, Heros[i].GetComponent<Friendly>().currHP, Heros[i].GetComponent<Friendly>().currMP);
                     }
                     Debug.Log("You lost");
-                    MenuManager.GoToMenu(MenuName.Main);
+                    MenuManager.GoToMenu(MenuName.GameOver);
                     GameManager.instance.gameStates = GameManager.GameStates.WORLD_STATE;
                     GameManager.instance.enemies.Clear();
                     break;

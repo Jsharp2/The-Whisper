@@ -150,12 +150,13 @@ public class Enemy : Character
 
             if(attack < this.attacks.Count)
             {
+                Debug.Log("Physical");
                 myAttack.choosenAttack = this.attacks[attack];
             }
             else
             {
                 attack = Random.Range(0, this.magicAttacks.Count);
-                myAttack.choosenAttack = this.magicAttacks[attack - this.attacks.Count];
+                myAttack.choosenAttack = this.magicAttacks[attack];
             }
             
             battleManager.CollectActions(myAttack);
